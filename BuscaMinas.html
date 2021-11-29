@@ -14,28 +14,72 @@
 </head>
 <body>
     <script>
+
+        // ============================================= FUNCIONES =============================================
+
+        // Esta función es una prueba, mezclando las dos que estan comentadas para ver si se pudiera hacer todo en una sola función
         // Realizamos una función con los valores introducidos por el usuario
-        function creaTabla(filas,columnas){
+        function dibujaTablero(filas,columnas,minas){
             // Primero crearemos la tabla añadiéndole el borde y el estilo deseado para posteriormente pasar a su construcción
-            document.write(`<table border='1' style = 'width: 100%;`);
+            document.write(`<table border='1' style = 'width: 100%;'`);
+                // Realizamos un primer bucle for para que vaya creando las filas deseadas por el usuario
+                for(let i = 0; i < filas; i++){
+                    document.write("<tr>");
+                    // Realizamos un segundo bucle for anidado en el anterior para que así se creen las columnas deseadas de cada fila
+                    for(let j = 0; j < columnas; j++){
+                        for (let i = 0; i < minas; i++){
+                            let reemplazar = parseInt(Math.random(0,2));
+                            if (reemplazar == 1){
+                                document.write(`<td align='center'>X</td>`);
+                            }else{
+                                document.write(`<td align='center'>0</td>`);
+                            }
+                        }
+                    }
+                    // Finalmente cerramos tanto las filas como la tabla
+                    document.write("</tr>");
+                }
+            document.write("<table>");
+        }
+
+
+        // Realizamos una función con los valores introducidos por el usuario
+        /*function dibujaTablero(filas,columnas){
+            // Primero crearemos la tabla añadiéndole el borde y el estilo deseado para posteriormente pasar a su construcción
+            document.write(`<table border='1' style = 'width: 100%;'`);
             // Realizamos un primer bucle for para que vaya creando las filas deseadas por el usuario
             for(let i = 0; i < filas; i++){
                 document.write("<tr>");
                 // Realizamos un segundo bucle for anidado en el anterior para que así se creen las columnas deseadas de cada fila
                 for(let j = 0; j < columnas; j++){
                     // Aquí mostramos las filas y columnas creadas, sumándole uno para que no empiece en 0 y sea mas user-friendly
-                    document.write(`<td>0</td>`);
+                    document.write(`<td align='center'>0</td>`);
                 }
                 // Finalmente cerramos tanto las filas como la tabla
                 document.write("</tr>");
             }
             document.write("<table>");
-        }
+        }*/
+
+        /*function insertaMinas(minas){
+            for (let i = 0; i < minas; i++){
+                let reemplazar = Math.random(0,2);
+                if (reemplazar == 1){
+                    dibujaTablero(filas,columnas).replace('0','X')
+                }
+            }
+        }*/
+
+        // ============================================= CÓDIGO =============================================
 
         var fila = prompt("Introduzca el número de filas que desea tener en la tabla.");
         var columna = prompt("Introduzca el número de columnas que desea tener en la tabla.");
+        var mina = prompt("Introduzca el número de minas que desea tener en la tabla.");
 
-        creaTabla(fila,columna);
+        dibujaTablero(fila,columna,mina);
+
+        // insertaMinas(mina);
+
     </script>
 </body>
 </html>
