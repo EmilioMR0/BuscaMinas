@@ -7,10 +7,10 @@
         <meta name="viewport" content="witdh=device,initial-scale=1.0">
         <meta name="lang" content="es-ES">
         <meta name="author" content="Emilio">
-        <meta name="keywords" content="computers,programming,web design,html,html,html5,css,php">
-        <meta name="description" content="Realización del Ejercicio 11 de Arrays">
-        <title>Ejercicio 11</title>
-        <link rel="stylesheet" href=".././css/estilos.css">
+        <meta name="keywords" content="computers,programming,web design,html,html,html5,css">
+        <meta name="description" content="Realización del Ejercicio del juego del Buscaminas">
+        <title>Buscaminas</title>
+        <!--<link rel="stylesheet" href=".././css/estilos.css">-->
 </head>
 <body>
     <script>
@@ -24,13 +24,18 @@
                 // Realizamos un segundo bucle for anidado en el anterior para que así se creen las columnas deseadas de cada fila
                 for(let j = 0; j < columnas; j++){
                     // Aquí mostramos las filas y columnas creadas, sumándole uno para que no empiece en 0 y sea mas user-friendly
-                    document.write(`<td>Fila ${i + 1}, Columna ${j + 1}</td>`);
+                    document.write(`<td>0</td>`);
                 }
                 // Finalmente cerramos tanto las filas como la tabla
                 document.write("</tr>");
             }
             document.write("<table>");
         }
+
+        var fila = prompt("Introduzca el número de filas que desea tener en la tabla.");
+        var columna = prompt("Introduzca el número de columnas que desea tener en la tabla.");
+
+        creaTabla(fila,columna);
     </script>
 </body>
 </html>
