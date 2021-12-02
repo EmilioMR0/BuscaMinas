@@ -10,6 +10,22 @@
         <meta name="keywords" content="computers,programming,web design,html,html,html5,css">
         <meta name="description" content="Realización del Ejercicio del juego del Buscaminas">
         <title>Buscaminas</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            table{
+                position: absolute;
+                height: 100vh;
+                width: 100vw;
+                table-layout: fixed;
+            }
+            td{
+                table-layout: fixed;
+            }
+        </style>
         <!--<link rel="stylesheet" href=".././css/estilos.css">-->
 </head>
 <body>
@@ -17,6 +33,47 @@
 
         // ============================================= FUNCIONES =============================================
 
+        function insertaMinas(){
+
+        }
+        function nMinasPos(nMinas){
+
+        }
+        function minasCerca(){
+            let nMinasCerca = 0;
+
+            for (aFilas = filas - 1; aFilas <= fila + 1; aFilas++){
+                for (let aColumnas = columnas - 1; aColumnas <= columna + 1;){
+
+                }
+            }
+        }
+        function dibujaTablero(filas,columnas){
+            // Primero crearemos la tabla añadiéndole el borde y el estilo deseado para posteriormente pasar a su construcción
+            document.write(`<table border='1'`);
+            // Realizamos un primer bucle for para que vaya creando las filas deseadas por el usuario
+            for(let i = 0; i < filas; i++){
+                document.write("<tr>");
+                // Realizamos un segundo bucle for anidado en el anterior para que así se creen las columnas deseadas de cada fila
+                for(let j = 0; j < columnas; j++){
+                    // Aquí mostramos las filas y columnas creadas, sumándole uno para que no empiece en 0 y sea mas user-friendly
+                    document.write(`<td align='center'>${tablero[i][j]}</td>`);
+                }
+                // Finalmente cerramos tanto las filas como la tabla
+                document.write("</tr>");
+            }
+            document.write("<table>");
+        }
+
+        function crearTablero(filas, columnas){
+            for(let i = 0; i < filas; i++){
+                tablero[i] = [];
+                for(let j = 0; j < columnas; j++){
+                    tablero[i][j] = false;
+                }
+            }
+        }
+        /*
         // Esta función es una prueba, mezclando las dos que estan comentadas para ver si se pudiera hacer todo en una sola función
         // Realizamos una función con los valores introducidos por el usuario
         function dibujaTablero(filas,columnas,minas){
@@ -41,7 +98,7 @@
                 }
             document.write("<table>");
         }
-
+        */
 
         // Realizamos una función con los valores introducidos por el usuario
         /*function dibujaTablero(filas,columnas){
@@ -72,11 +129,27 @@
 
         // ============================================= CÓDIGO =============================================
 
-        var fila = prompt("Introduzca el número de filas que desea tener en la tabla.");
-        var columna = prompt("Introduzca el número de columnas que desea tener en la tabla.");
-        var mina = prompt("Introduzca el número de minas que desea tener en la tabla.");
+        var fila = 0;
+        var columna = 0;
+        var mina = 0;
+        let cancelar = false;
+        var tablero = [];
 
-        dibujaTablero(fila,columna,mina);
+        do{
+            fila = prompt("Introduzca el número de filas que desea tener en la tabla.");
+            columna = prompt("Introduzca el número de columnas que desea tener en la tabla.");
+            mina = prompt("Introduzca el número de minas que desea tener en la tabla.");
+
+            if (fila == null || columna == null || mina == null){
+                cancelar = true;
+            }
+        }while((isNaN(fila) || isNaN(columna) || isNaN(mina) || fila < 2 || columna < 2 || fila > 20 || columna > 20 || mina < 2 || mina >= fila * columna) && !cancelar)
+
+        crearTablero(fila, columna);
+
+        dibujaTablero(fila,columna);
+
+
 
         // insertaMinas(mina);
 
